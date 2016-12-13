@@ -205,6 +205,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         while (cursor.moveToNext()) {
             String[] columnNames = cursor.getColumnNames();
             Log.d("test", Arrays.toString(columnNames));
+            //字段名严格
             Long id = cursor.getLong(cursor.getColumnIndex("_id"));
             name = cursor.getString(cursor.getColumnIndex("NAME"));
             age = cursor.getString(cursor.getColumnIndex("AGE"));
