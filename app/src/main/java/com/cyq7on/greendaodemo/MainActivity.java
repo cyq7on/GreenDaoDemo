@@ -140,12 +140,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void update(int index,String name,String age,String sex) {
-        Long id = userList.get(index).getId();
+        User user =  userList.get(index);
         StringBuilder sql = new StringBuilder("update user");
         sql.append(" set name = '" + name + "',");
         sql.append(" age = '" + age + "',");
         sql.append(" sex = '" + sex + "'");
-        sql.append(" where _id = '" + id + "'");
+        sql.append(" where _id = '" + user.getId() + "'");
         SQLiteDatabase db = MyApplication.getContext().getSqLiteDatabase();
         db.execSQL(sql.toString());
         Log.d("sql",sql.toString());
@@ -153,9 +153,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         /*userList.clear();
         userList.addAll(userDao.loadAll());
         adapter.notifyDataSetChanged();*/
-        User user = new User(id,name,age,sex);
-        userList.remove(index);
-        userList.add(index,user);
+        user.setName(name);
+        user.setAge(age);
+        user.setSex(sex);
         adapter.notifyItemChanged(index);
     }
 
